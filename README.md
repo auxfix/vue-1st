@@ -1,3 +1,3 @@
 ## Simple Vue App
 
-Just CDN version
+Just stupid simple CDN version
