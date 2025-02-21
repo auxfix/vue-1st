@@ -17,7 +17,58 @@
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-        <div id="app">{{ message }}</div>
+        <div id="app">
+            <header class="header">
+                <h1>{{ title }}</h1>
+            </header>
+            <main class="main-content">
+                <div class="features">
+                    <div v-for="feature in features" :key="feature.id" class="feature-card">
+                        <h3>{{ feature.title }}</h3>
+                        <p>{{ feature.description }}</p>
+                    </div>
+                </div>
+            </main>
+            <footer class="footer">
+                <p>&copy; {{ year }} All rights reserved.</p>
+            </footer>
+        </div>
+        <style>
+            .header {
+                text-align: center;
+                padding: 2rem;
+                background: #f8f9fa;
+            }
+            .main-content {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 2rem;
+            }
+            .features {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 2rem;
+                margin-top: 2rem;
+            }
+            .feature-card {
+                padding: 1.5rem;
+                border-radius: 8px;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                background: white;
+            }
+            .footer {
+                text-align: center;
+                padding: 1rem;
+                background: #f8f9fa;
+                margin-top: 2rem;
+            }
+            body {
+                margin: 0;
+                font-family: Arial, sans-serif;
+                line-height: 1.6;
+                background: #fff;
+            }
+        </style>
 
     </body>
 </html>
