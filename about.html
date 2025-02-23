@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>About Us - Sick World Residence</title>
+        <meta name="description" content="Learn more about Sick World Residence and our commitment to excellence">
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js" defer></script>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+        <script src="./about.js" defer></script>
+        <link rel="stylesheet" href="./styles.css">
+    </head>
+    <body>
+        <div id="app">
+            <nav class="nav" :class="{ 'nav-scrolled': isScrolled }">
+                <div class="nav-brand">{{ brandName }}</div>
+                <div class="nav-links">
+                    <a v-for="link in navLinks" :key="link.id" :href="link.href">{{ link.text }}</a>
+                </div>
+            </nav>
+
+            <header class="hero about-hero">
+                <h1 class="animate__animated animate__fadeIn">About Us</h1>
+                <p class="hero-subtitle animate__animated animate__fadeIn animate__delay-1s">{{ subtitle }}</p>
+            </header>
+
+            <main class="main-content">
+                <section class="about-section animate__animated animate__fadeInUp">
+                    <h2 class="section-title">Our Story</h2>
+                    <div class="about-content">
+                        <div class="about-text">
+                            <p>{{ story }}</p>
+                        </div>
+                        <div class="about-image">
+                            <img src="https://placehold.co/600x400" alt="Our Building">
+                        </div>
+                    </div>
+                </section>
+
+                <section class="team-section animate__animated animate__fadeInUp">
+                    <h2 class="section-title">Our Team</h2>
+                    <div class="team-grid">
+                        <div v-for="member in team" :key="member.id" class="team-member">
+                            <div class="member-image">
+                                <img :src="member.image" :alt="member.name">
+                            </div>
+                            <h3>{{ member.name }}</h3>
+                            <p class="member-position">{{ member.position }}</p>
+                            <p class="member-bio">{{ member.bio }}</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="values-section animate__animated animate__fadeInUp">
+                    <h2 class="section-title">Our Values</h2>
+                    <div class="values-grid">
+                        <div v-for="value in values" :key="value.id" class="value-card">
+                            <div class="value-icon">{{ value.icon }}</div>
+                            <h3>{{ value.title }}</h3>
+                            <p>{{ value.description }}</p>
+                        </div>
+                    </div>
+                </section>
+            </main>
+
+            <footer class="footer">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h3>About Us</h3>
+                        <p>{{ footerAbout }}</p>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li v-for="link in footerLinks" :key="link.id">
+                                <a :href="link.href">{{ link.text }}</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Contact Info</h3>
+                        <p>{{ contactInfo.address }}</p>
+                        <p>{{ contactInfo.email }}</p>
+                        <p>{{ contactInfo.phone }}</p>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; {{ year }} {{ brandName }}. All rights reserved.</p>
+                </div>
+            </footer>
+        </div>
+    </body>
+</html>

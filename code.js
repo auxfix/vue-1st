@@ -9,9 +9,10 @@ createApp({
     const subtitle = ref('Experience luxury and comfort like never before')
     
     const navLinks = ref([
-      { id: 1, text: 'Home', href: '#' },
-      { id: 2, text: 'Features', href: '#features' },
-      { id: 3, text: 'Contact', href: '#contact' }
+      { id: 1, text: 'Home', href: 'index.html' },
+      { id: 2, text: 'About', href: 'about.html' },
+      { id: 3, text: 'Services', href: 'services.html' },
+      { id: 4, text: 'Portfolio', href: 'portfolio.html' }
     ])
 
     const features = ref([

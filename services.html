@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Services - Sick World Residence</title>
+        <meta name="description" content="Explore our comprehensive range of residential services">
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js" defer></script>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+        <script src="./services.js" defer></script>
+        <link rel="stylesheet" href="./styles.css">
+    </head>
+    <body>
+        <div id="app">
+            <nav class="nav" :class="{ 'nav-scrolled': isScrolled }">
+                <div class="nav-brand">{{ brandName }}</div>
+                <div class="nav-links">
+                    <a v-for="link in navLinks" :key="link.id" :href="link.href">{{ link.text }}</a>
+                </div>
+            </nav>
+
+            <header class="hero services-hero">
+                <h1 class="animate__animated animate__fadeIn">Our Services</h1>
+                <p class="hero-subtitle animate__animated animate__fadeIn animate__delay-1s">{{ subtitle }}</p>
+            </header>
+
+            <main class="main-content">
+                <section class="services-grid animate__animated animate__fadeInUp">
+                    <div v-for="service in services" :key="service.id" class="service-card">
+                        <div class="service-icon">{{ service.icon }}</div>
+                        <h2>{{ service.title }}</h2>
+                        <p>{{ service.description }}</p>
+                        <ul class="service-features">
+                            <li v-for="feature in service.features" :key="feature">{{ feature }}</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section class="process-section animate__animated animate__fadeInUp">
+                    <h2 class="section-title">Our Process</h2>
+                    <div class="process-timeline">
+                        <div v-for="step in process" :key="step.id" class="process-step">
+                            <div class="step-number">{{ step.id }}</div>
+                            <h3>{{ step.title }}</h3>
+                            <p>{{ step.description }}</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="cta-section animate__animated animate__fadeInUp">
+                    <h2>Ready to Get Started?</h2>
+                    <p>{{ ctaText }}</p>
+                    <button class="cta-button" @click="contactUs">Contact Us Today</button>
+                </section>
+            </main>
+
+            <footer class="footer">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h3>About Us</h3>
+                        <p>{{ footerAbout }}</p>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li v-for="link in footerLinks" :key="link.id">
+                                <a :href="link.href">{{ link.text }}</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Contact Info</h3>
+                        <p>{{ contactInfo.address }}</p>
+                        <p>{{ contactInfo.email }}</p>
+                        <p>{{ contactInfo.phone }}</p>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; {{ year }} {{ brandName }}. All rights reserved.</p>
+                </div>
+            </footer>
+        </div>
+    </body>
+</html>
