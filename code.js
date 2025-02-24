@@ -70,12 +70,15 @@ createApp({
     }
 
     const scrollToSection = (href) => {
-      const element = document.querySelector(href)
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' })
+      if (href.startsWith('#')) {
+        const element = document.querySelector(href)
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' })
+        }
+      } else {
+        window.location.href = href
       }
     }
-
     const submitForm = async () => {
       isSubmitting.value = true
       // Simulate form submission

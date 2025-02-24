@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Sick World Residence</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <header :class="{ 'scrolled': isScrolled }">
+            <nav class="container">
+                <div class="brand">
+                    <a href="index.html" @click.prevent="scrollToSection('index.html')">{{ brandName }}</a>
+                </div>
+                <div class="nav-links">
+                    <a v-for="link in navLinks" 
+                       :key="link.id" 
+                       :href="link.href"
+                       @click.prevent="scrollToSection(link.href)">{{ link.text }}</a>
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            <section class="hero portfolio-hero">
+                <div class="container">
+                    <h1>Our Portfolio</h1>
+                    <p>Discover our exceptional properties and successful projects</p>
+                </div>
+            </section>
+
+            <section class="portfolio-grid container">
+                <div class="portfolio-filters">
+                    <button v-for="category in categories" 
+                            :key="category"
+                            @click="filterPortfolio(category)"
+                            :class="{ active: currentCategory === category }">
+                        {{ category }}
+                    </button>
+                </div>
+
+                <div class="portfolio-items">
+                    <div v-for="item in filteredPortfolioItems" 
+                         :key="item.id"
+                         class="portfolio-item"
+                         @mouseenter="item.isHovered = true"
+                         @mouseleave="item.isHovered = false">
+                        <div class="portfolio-image">
+                            <img :src="item.image" :alt="item.title">
+                            <div class="portfolio-overlay" :class="{ active: item.isHovered }">
+                                <h3>{{ item.title }}</h3>
+                                <p>{{ item.description }}</p>
+                                <button @click="showDetails(item)">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h3>About Us</h3>
+                        <p>{{ footerAbout }}</p>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li v-for="link in footerLinks" :key="link.id">
+                                <a :href="link.href">{{ link.text }}</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Contact Info</h3>
+                        <p>{{ contactInfo.address }}</p>
+                        <p>Email: {{ contactInfo.email }}</p>
+                        <p>Phone: {{ contactInfo.phone }}</p>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; {{ year }} {{ brandName }}. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="portfolio.js"></script>
+</body>
+</html>
