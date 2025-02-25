@@ -9,19 +9,12 @@
 </head>
 <body>
     <div id="app">
-        <header :class="{ 'scrolled': isScrolled }">
-            <nav class="container">
-                <div class="brand">
-                    <a href="index.html" @click.prevent="scrollToSection('index.html')">{{ brandName }}</a>
-                </div>
-                <div class="nav-links">
-                    <a v-for="link in navLinks" 
-                       :key="link.id" 
-                       :href="link.href"
-                       @click.prevent="scrollToSection(link.href)">{{ link.text }}</a>
-                </div>
-            </nav>
-        </header>
+        <nav class="nav" :class="{ 'nav-scrolled': isScrolled }">
+            <div class="nav-brand">{{ brandName }}</div>
+            <div class="nav-links">
+                <a v-for="link in navLinks" :key="link.id" :href="link.href" @click.prevent="scrollToSection(link.href)">{{ link.text }}</a>
+            </div>
+        </nav>
 
         <main>
             <section class="hero portfolio-hero">
