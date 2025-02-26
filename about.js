@@ -19,21 +19,21 @@ createApp({
         id: 1,
         name: 'John Smith',
         position: 'CEO & Founder',
-        image: 'https://placehold.co/300x300',
+        image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=300&h=300',
         bio: 'With over 20 years of experience in real estate development.'
       },
       {
         id: 2,
         name: 'Sarah Johnson',
         position: 'Head of Architecture',
-        image: 'https://placehold.co/300x300',
+        image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&h=300',
         bio: 'Award-winning architect with a passion for sustainable design.'
       },
       {
         id: 3,
         name: 'Michael Chen',
         position: 'Customer Relations Director',
-        image: 'https://placehold.co/300x300',
+        image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=300&h=300',
         bio: 'Dedicated to ensuring the highest level of resident satisfaction.'
       }
     ])
