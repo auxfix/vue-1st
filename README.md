@@ -1,26 +1,75 @@
-# Vue First Steps 🚀
+# Nuxt Minimal Starter
 
-## About This Project 🎯
-Here's my first experiment with Vue.js! A simple yet elegant landing page built with Vue 3 CDN version.
+Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
-## ✨ Live Demo ✨
-<div align="center">
+## Setup
 
-🌟 [Experience the Magic](https://auxfix.github.io/vue-1st/) 🌟
+Make sure to install dependencies:
 
-<sub>Immerse yourself in a seamless blend of design and functionality</sub>
-</div>
+```bash
+# npm
+npm install
 
-## Features ✨
-- Smooth scroll navigation
-- Interactive feature cards
-- Contact form with submission handling
-- Responsive design
+# pnpm
+pnpm install
 
-## Tech Stack 🛠️
-- Vue 3 (CDN)
-- Pure CSS
-- Animate.css
+# yarn
+yarn install
 
-## Getting Started 🏃
-Just open `index.html` in your browser - it's that simple!
+# bun
+bun install
+```
+
+## Development Server
+
+Start the development server on `http://localhost:3000`:
+
+```bash
+# npm
+npm run dev
+
+# pnpm
+pnpm dev
+
+# yarn
+yarn dev
+
+# bun
+bun run dev
+```
+
+## Production
+
+Build the application for production:
+
+```bash
+# npm
+npm run build
+
+# pnpm
+pnpm build
+
+# yarn
+yarn build
+
+# bun
+bun run build
+```
+
+Locally preview production build:
+
+```bash
+# npm
+npm run preview
+
+# pnpm
+pnpm preview
+
+# yarn
+yarn preview
+
+# bun
+bun run preview
+```
+
+Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.

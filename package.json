@@ -1,0 +1,19 @@
+{
+  "name": "sick-world-residence",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "devDependencies": {
+    "nuxt": "^3.10.1"
+  },
+  "dependencies": {
+    "animate.css": "^4.1.1",
+    "@nuxtjs/google-fonts": "^3.1.3"
+  }
+}
