@@ -1,75 +1,114 @@
-# Nuxt Minimal Starter
+# Sick World Residence 🏢
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+A modern luxury residence website built with Nuxt 3, featuring a beautiful UI and smooth user experience.
 
-## Setup
+## Features ✨
 
-Make sure to install dependencies:
+- Modern, responsive design
+- Animated page transitions
+- Interactive property listings
+- Contact form with validation
+- Filterable portfolio
+- Comprehensive services showcase
 
+## Tech Stack 🛠️
+
+- Nuxt 3
+- Vue 3 Composition API
+- Animate.css for animations
+- Google Fonts (Poppins)
+
+## Prerequisites 📋
+
+- Node.js (v16 or higher)
+- npm or yarn
+
+## Getting Started 🚀
+
+1. Clone the repository:
 ```bash
-# npm
+git clone https://github.com/yourusername/sick-world-residence.git
+cd sick-world-residence
+```
+
+2. Install dependencies:
+```bash
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
+# or
 yarn install
-
-# bun
-bun install
 ```
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
+3. Run development server:
 ```bash
-# npm
 npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
+# or
 yarn dev
-
-# bun
-bun run dev
 ```
 
-## Production
-
-Build the application for production:
-
+4. Build for production:
 ```bash
-# npm
 npm run build
-
-# pnpm
-pnpm build
-
-# yarn
+# or
 yarn build
-
-# bun
-bun run build
 ```
 
-Locally preview production build:
-
+5. Preview production build:
 ```bash
-# npm
 npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
+# or
 yarn preview
-
-# bun
-bun run preview
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+## Project Structure 📁
+
+```
+├── assets/
+│   └── css/
+│       └── main.css    # Global styles and variables
+├── components/
+│   ├── TheNavigation.vue
+│   └── TheFooter.vue
+├── pages/
+│   ├── index.vue       # Home page
+│   ├── about.vue       # About page
+│   ├── services.vue    # Services page
+│   └── portfolio.vue   # Portfolio page
+├── public/             # Static assets
+├── app.vue             # App root component
+└── nuxt.config.ts      # Nuxt configuration
+```
+
+## Development Guide 💻
+
+### Adding New Pages
+
+Create new `.vue` files in the `pages` directory. The file name will become the route path.
+
+### Creating Components
+
+Add reusable components in the `components` directory. They will be auto-imported.
+
+### Styling
+
+- Use CSS variables defined in `assets/css/main.css`
+- Follow the existing color scheme and design patterns
+- Use the provided utility classes
+
+### Best Practices
+
+- Keep components small and focused
+- Use TypeScript for better type safety
+- Follow Vue 3 Composition API patterns
+- Implement proper SEO meta tags
+
+## Contributing 🤝
+
+1. Fork the repository
+2. Create your feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
+
+## License 📄
+
+This project is licensed under the MIT License - see the LICENSE file for details.
