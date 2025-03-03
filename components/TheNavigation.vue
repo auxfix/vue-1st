@@ -1,6 +1,6 @@
 <template>
   <nav class="nav" :class="{ 'nav-scrolled': isScrolled }">
-    <div class="nav-brand">{{ brandName }}</div>
+    <div class="nav-brand">{{ siteContent.brandName }}</div>
     <div class="nav-links">
       <NuxtLink
         v-for="link in navLinks"
@@ -14,11 +14,17 @@
   </nav>
 </template>
 
-<script setup>
-const isScrolled = ref(false)
-const brandName = ref('Sick World Residence')
+<script setup lang="ts">
+interface NavLink {
+  id: number
+  text: string
+  href: string
+}
 
-const navLinks = ref([
+const { siteContent } = useSiteContent()
+const isScrolled = ref(false)
+
+const navLinks = ref<NavLink[]>([
   { id: 1, text: 'Home', href: '/' },
   { id: 2, text: 'About', href: '/about' },
   { id: 3, text: 'Services', href: '/services' },

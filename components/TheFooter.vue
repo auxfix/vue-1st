@@ -3,45 +3,31 @@
     <div class="footer-content">
       <div class="footer-section">
         <h3>About Us</h3>
-        <p>{{ footerAbout }}</p>
+        <p>{{ siteContent.footerContent.about }}</p>
       </div>
       <div class="footer-section">
         <h3>Quick Links</h3>
         <ul>
-          <li v-for="link in footerLinks" :key="link.id">
+          <li v-for="link in siteContent.footerContent.links" :key="link.id">
             <NuxtLink :to="link.href">{{ link.text }}</NuxtLink>
           </li>
         </ul>
       </div>
       <div class="footer-section">
         <h3>Contact Info</h3>
-        <p>{{ contactInfo.address }}</p>
-        <p>{{ contactInfo.email }}</p>
-        <p>{{ contactInfo.phone }}</p>
+        <p>{{ siteContent.footerContent.contactInfo.address }}</p>
+        <p>{{ siteContent.footerContent.contactInfo.email }}</p>
+        <p>{{ siteContent.footerContent.contactInfo.phone }}</p>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>&copy; {{ year }} {{ brandName }}. All rights reserved.</p>
+      <p>&copy; {{ year }} {{ siteContent.brandName }}. All rights reserved.</p>
     </div>
   </footer>
 </template>
 
-<script setup>
-const brandName = ref('Sick World Residence')
-const footerAbout = ref('We are dedicated to providing exceptional living spaces that combine luxury, comfort, and convenience.')
-
-const footerLinks = ref([
-  { id: 1, text: 'About Us', href: '/about' },
-  { id: 2, text: 'Services', href: '/services' },
-  { id: 3, text: 'Privacy Policy', href: '/privacy' }
-])
-
-const contactInfo = ref({
-  address: '123 Luxury Avenue, Cityville, ST 12345',
-  email: 'info@sickworldresidence.com',
-  phone: '+1 (555) 123-4567'
-})
-
+<script setup lang="ts">
+const { siteContent } = useSiteContent()
 const year = computed(() => new Date().getFullYear())
 </script>
 

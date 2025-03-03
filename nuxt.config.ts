@@ -1,10 +1,12 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
+
   css: [
     '@/assets/css/main.css',
     'animate.css/animate.min.css'
   ],
+
   app: {
     head: {
       title: 'Sick World Residence',
@@ -20,5 +22,7 @@ export default defineNuxtConfig({
         }
       ]
     }
-  }
+  },
+
+  compatibilityDate: '2025-03-03'
 })

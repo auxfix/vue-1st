@@ -1,8 +1,8 @@
 <template>
   <div>
     <header class="hero">
-      <h1 class="animate__animated animate__fadeIn">{{ title }}</h1>
-      <p class="hero-subtitle animate__animated animate__fadeIn animate__delay-1s">{{ subtitle }}</p>
+      <h1 class="animate__animated animate__fadeIn">{{ siteContent.hero.title }}</h1>
+      <p class="hero-subtitle animate__animated animate__fadeIn animate__delay-1s">{{ siteContent.hero.subtitle }}</p>
       <NuxtLink
         to="#features"
         class="btn animate__animated animate__fadeIn animate__delay-2s"
@@ -15,9 +15,12 @@
     <main class="main-content">
       <section id="features" class="features-section container">
         <h2 class="section-title">Our Features</h2>
-        <div class="features-grid">
+        <div v-if="isLoading" class="loading-state">
+          Loading features...
+        </div>
+        <div v-else class="features-grid">
           <div
-            v-for="feature in features"
+            v-for="feature in features.features"
             :key="feature.id"
             class="feature-card"
             @mouseenter="feature.isHovered = true"
@@ -66,33 +69,8 @@
   </div>
 </template>
 
-<script setup>
-const title = ref('Welcome to Your Dream Living Space')
-const subtitle = ref('Experience luxury and comfort like never before')
-
-const features = ref([
-  {
-    id: 1,
-    icon: '🏠',
-    title: 'Premium Location',
-    description: 'Prime spots in the heart of the city',
-    isHovered: false
-  },
-  {
-    id: 2,
-    icon: '🛋️',
-    title: 'Luxury Amenities',
-    description: 'State-of-the-art facilities for your comfort',
-    isHovered: false
-  },
-  {
-    id: 3,
-    icon: '🔒',
-    title: '24/7 Security',
-    description: 'Round-the-clock protection for your peace of mind',
-    isHovered: false
-  }
-])
+<script setup lang="ts">
+const { siteContent, features, isLoading } = useSiteContent()
 
 const contactForm = ref({
   name: '',
@@ -102,7 +80,7 @@ const contactForm = ref({
 
 const isSubmitting = ref(false)
 
-const scrollToSection = (href) => {
+const scrollToSection = (href: string) => {
   const element = document.querySelector(href)
   if (element) {
     element.scrollIntoView({ behavior: 'smooth' })
@@ -122,6 +100,17 @@ const submitForm = async () => {
     isSubmitting.value = false
   }
 }
+
+// Add meta tags for SEO
+useHead({
+  title: siteContent.value.hero.title,
+  meta: [
+    {
+      name: 'description',
+      content: siteContent.value.hero.subtitle
+    }
+  ]
+})
 </script>
 
 <style scoped>
@@ -152,5 +141,12 @@ const submitForm = async () => {
   font-size: 1.5rem;
   margin-bottom: 2rem;
   opacity: 0.9;
+}
+
+.loading-state {
+  text-align: center;
+  padding: 2rem;
+  color: var(--secondary-color);
+  font-size: 1.2rem;
 }
 </style> 
