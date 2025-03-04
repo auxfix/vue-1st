@@ -37,4 +37,20 @@ export interface SiteContent {
 
 export interface FeaturesResponse {
   features: Feature[]
+}
+
+export interface PortfolioItem {
+  id: number
+  name: string
+  location: string
+  bedrooms: number
+  bathrooms: number
+  area: number
+  category: string
+  image: string
+  description: string
+  features: string[]
+  amenities: string[]
+  price: string
+  status: string
 } 
