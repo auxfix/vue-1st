@@ -28,7 +28,8 @@ const navLinks = ref<NavLink[]>([
   { id: 1, text: 'Home', href: '/' },
   { id: 2, text: 'About', href: '/about' },
   { id: 3, text: 'Services', href: '/services' },
-  { id: 4, text: 'Portfolio', href: '/portfolio' }
+  { id: 4, text: 'Portfolio', href: '/portfolio' },
+  { id: 5, text: 'Contact', href: '/contact' }
 ])
 
 onMounted(() => {
