@@ -1,158 +1,106 @@
 <template>
   <div class="contact-page">
-    <h1 class="page-title animate__animated animate__fadeIn">Contact Us</h1>
-    <div class="contact-container animate__animated animate__fadeInUp">
+    <h1 class="animate__animated animate__fadeIn">Contact Us</h1>
+    <p class="animate__animated animate__fadeIn animate__delay-1s">
+      Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+    </p>
+    <div class="contact-container animate__animated animate__fadeIn animate__delay-2s">
       <div class="contact-info">
-        <h2>Get in Touch</h2>
-        <p>We'd love to hear from you. Please fill out the form below or use our contact information.</p>
-        
-        <div class="info-items">
-          <div class="info-item hover-effect">
-            <i class="fas fa-map-marker-alt pulse"></i>
-            <span>123 Luxury Avenue, Beverly Hills, CA 90210</span>
-          </div>
-          <div class="info-item hover-effect">
-            <i class="fas fa-phone pulse"></i>
-            <span>+1 (555) 123-4567</span>
-          </div>
-          <div class="info-item hover-effect">
-            <i class="fas fa-envelope pulse"></i>
-            <span>info@sickworldresidence.com</span>
+        <div class="info-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <div>
+            <h3>Location</h3>
+            <p>123 Luxury Lane, Beverly Hills, CA 90210</p>
           </div>
         </div>
-
+        <div class="info-item">
+          <i class="fas fa-phone"></i>
+          <div>
+            <h3>Phone</h3>
+            <p>+1 (555) 123-4567</p>
+          </div>
+        </div>
+        <div class="info-item">
+          <i class="fas fa-envelope"></i>
+          <div>
+            <h3>Email</h3>
+            <p>info@sickworldresidence.com</p>
+          </div>
+        </div>
         <div class="social-links">
-          <a href="#" class="social-icon" aria-label="Facebook">
-            <i class="fab fa-facebook-f"></i>
-          </a>
-          <a href="#" class="social-icon" aria-label="Twitter">
-            <i class="fab fa-twitter"></i>
-          </a>
-          <a href="#" class="social-icon" aria-label="Instagram">
-            <i class="fab fa-instagram"></i>
-          </a>
-          <a href="#" class="social-icon" aria-label="LinkedIn">
-            <i class="fab fa-linkedin-in"></i>
-          </a>
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
         </div>
       </div>
-
-      <form class="contact-form" @submit.prevent="handleSubmit">
-        <div v-if="showSuccess" class="success-message animate__animated animate__fadeIn">
-          <i class="fas fa-check-circle"></i>
-          Message sent successfully!
-        </div>
-
+      <form @submit.prevent="handleSubmit" class="contact-form">
         <div class="form-group">
-          <label for="name">Full Name</label>
+          <label for="name">Name</label>
           <div class="input-group">
             <i class="fas fa-user"></i>
-            <input
-              id="name"
-              v-model="formData.name"
-              type="text"
-              required
-              placeholder="Enter your full name"
-              :disabled="isSubmitting"
-            >
+            <input type="text" id="name" v-model="form.name" required>
           </div>
         </div>
-
         <div class="form-group">
-          <label for="email">Email Address</label>
+          <label for="email">Email</label>
           <div class="input-group">
             <i class="fas fa-envelope"></i>
-            <input
-              id="email"
-              v-model="formData.email"
-              type="email"
-              required
-              placeholder="Enter your email"
-              :disabled="isSubmitting"
-            >
+            <input type="email" id="email" v-model="form.email" required>
           </div>
         </div>
-
         <div class="form-group">
-          <label for="subject">Subject</label>
+          <label for="phone">Phone</label>
           <div class="input-group">
-            <i class="fas fa-heading"></i>
-            <input
-              id="subject"
-              v-model="formData.subject"
-              type="text"
-              required
-              placeholder="Enter subject"
-              :disabled="isSubmitting"
-            >
+            <i class="fas fa-phone"></i>
+            <input type="tel" id="phone" v-model="form.phone">
           </div>
         </div>
-
         <div class="form-group">
           <label for="message">Message</label>
           <div class="input-group">
-            <i class="fas fa-comment-alt"></i>
-            <textarea
-              id="message"
-              v-model="formData.message"
-              required
-              placeholder="Enter your message"
-              rows="5"
-              :disabled="isSubmitting"
-            ></textarea>
+            <i class="fas fa-comment"></i>
+            <textarea id="message" v-model="form.message" rows="5" required></textarea>
           </div>
         </div>
-
-        <button 
-          type="submit" 
-          class="submit-btn" 
-          :disabled="isSubmitting"
-        >
+        <button type="submit" :disabled="isSubmitting" class="submit-btn">
           <span v-if="!isSubmitting">Send Message</span>
           <span v-else class="loading">
-            <i class="fas fa-spinner fa-spin"></i> Sending...
+            <i class="fas fa-spinner fa-spin"></i>
+            Sending...
           </span>
         </button>
       </form>
+    </div>
+    <div v-if="showSuccess" class="success-message animate__animated animate__fadeIn">
+      Thank you for your message! We'll get back to you soon.
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-
-const formData = ref({
-  name: '',
-  email: '',
-  subject: '',
-  message: ''
-})
+import { ref, reactive } from 'vue'
 
 const isSubmitting = ref(false)
 const showSuccess = ref(false)
 
+const form = reactive({
+  name: '',
+  email: '',
+  phone: '',
+  message: ''
+})
+
 const handleSubmit = async () => {
   isSubmitting.value = true
-  
   try {
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1500))
-    
-    console.log('Form submitted:', formData.value)
     showSuccess.value = true
-    
-    // Reset form
-    formData.value = {
-      name: '',
-      email: '',
-      subject: '',
-      message: ''
-    }
-    
-    // Hide success message after 5 seconds
-    setTimeout(() => {
-      showSuccess.value = false
-    }, 5000)
+    form.name = ''
+    form.email = ''
+    form.phone = ''
+    form.message = ''
   } catch (error) {
     console.error('Error submitting form:', error)
   } finally {
@@ -174,207 +122,132 @@ useHead({
 
 <style scoped>
 .contact-page {
-  padding: 2rem;
   max-width: 1200px;
   margin: 0 auto;
-  min-height: 80vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  padding: 2rem;
 }
 
-.page-title {
-  font-size: 2.5rem;
-  color: #333;
-  margin-bottom: 2rem;
+h1 {
   text-align: center;
-  font-weight: 600;
-  letter-spacing: -0.5px;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+p {
+  text-align: center;
+  color: #666;
+  margin-bottom: 2rem;
 }
 
 .contact-container {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 3rem;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
   background: #fff;
-  padding: 1rem;
-  border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-}
-
-.contact-container:hover {
-  transform: translateY(-5px);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .contact-info {
-  padding: 1rem;
-  position: relative;
-}
-
-.contact-info h2 {
-  font-size: 1.8rem;
-  margin-bottom: 1rem;
-  color: #333;
-  font-weight: 600;
-}
-
-.info-items {
-  margin-top: 2rem;
+  padding-right: 2rem;
+  border-right: 1px solid #eee;
 }
 
 .info-item {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   margin-bottom: 1.5rem;
-  font-size: 1.1rem;
-  padding: 0.5rem;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-}
-
-.hover-effect:hover {
-  background: #f8f9fa;
-  transform: translateX(5px);
 }
 
 .info-item i {
+  font-size: 1.5rem;
+  color: #007bff;
   margin-right: 1rem;
-  color: #4a90e2;
-  font-size: 1.2rem;
+  margin-top: 0.25rem;
 }
 
-.pulse {
-  animation: pulse 2s infinite;
+.info-item h3 {
+  margin: 0 0 0.5rem 0;
+  color: #333;
 }
 
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.1);
-  }
-  100% {
-    transform: scale(1);
-  }
+.info-item p {
+  margin: 0;
+  color: #666;
+  text-align: left;
 }
 
 .social-links {
   margin-top: 2rem;
   display: flex;
   gap: 1rem;
-  justify-content: center;
 }
 
-.social-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: #4a90e2;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  transition: all 0.3s ease;
+.social-links a {
+  color: #007bff;
+  font-size: 1.5rem;
+  transition: color 0.3s ease;
 }
 
-.social-icon:hover {
-  transform: translateY(-3px);
-  background: #357abd;
+.social-links a:hover {
+  color: #0056b3;
 }
 
 .contact-form {
-  padding: 1rem;
-  background: #f9f9f9;
-  border-radius: 12px;
-  position: relative;
-}
-
-.success-message {
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
-  right: 1rem;
-  background: #4CAF50;
-  color: white;
-  padding: 1rem;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  display: grid;
+  gap: 1.5rem;
 }
 
 .form-group {
-  margin-bottom: 1.5rem;
+  display: grid;
+  gap: 0.5rem;
 }
 
 label {
-  display: block;
-  margin-bottom: 0.5rem;
   color: #333;
   font-weight: 500;
 }
 
 .input-group {
   position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .input-group i {
   position: absolute;
   left: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #4a90e2;
+  color: #666;
 }
 
-input,
-textarea {
+input, textarea {
   width: 100%;
-  padding: 0.8rem 2.5rem;
-  border: 2px solid #ddd;
-  border-radius: 8px;
+  padding: 0.75rem 1rem 0.75rem 2.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
   font-size: 1rem;
-  transition: all 0.3s ease;
+  transition: border-color 0.3s ease;
 }
 
-textarea {
-  padding-left: 2.5rem;
-}
-
-input:focus,
-textarea:focus {
+input:focus, textarea:focus {
   outline: none;
-  border-color: #4a90e2;
-  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
-}
-
-input:disabled,
-textarea:disabled {
-  background-color: #f5f5f5;
-  cursor: not-allowed;
+  border-color: #007bff;
 }
 
 .submit-btn {
-  background: #4a90e2;
-  color: white;
-  padding: 1rem 2rem;
+  background: #007bff;
+  color: #fff;
   border: none;
-  border-radius: 8px;
-  font-size: 1.1rem;
+  padding: 1rem;
+  border-radius: 4px;
+  font-size: 1rem;
   cursor: pointer;
-  transition: all 0.3s ease;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
+  transition: background-color 0.3s ease;
 }
 
-.submit-btn:not(:disabled):hover {
-  background: #357abd;
-  transform: translateY(-2px);
+.submit-btn:hover:not(:disabled) {
+  background: #0056b3;
 }
 
 .submit-btn:disabled {
@@ -385,26 +258,30 @@ textarea:disabled {
 .loading {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
+}
+
+.success-message {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: #28a745;
+  color: #fff;
+  padding: 1rem 2rem;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 @media (max-width: 768px) {
   .contact-container {
     grid-template-columns: 1fr;
-    padding: 1rem;
   }
-  
-  .contact-info,
-  .contact-form {
-    padding: 1rem;
-  }
-  
-  .page-title {
-    font-size: 2rem;
-  }
-  
-  .social-links {
-    justify-content: center;
+  .contact-info {
+    padding-right: 0;
+    border-right: none;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 2rem;
   }
 }
 </style> 
