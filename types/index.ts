@@ -53,4 +53,4 @@ export interface PortfolioItem {
   amenities: string[]
   price: string
   status: string
-} 
+}

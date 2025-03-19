@@ -2,7 +2,9 @@
   <div class="portfolio-page">
     <header class="page-header">
       <div class="container">
-        <h1 class="animate__animated animate__fadeIn">Our Portfolio</h1>
+        <h1 class="animate__animated animate__fadeIn">
+          Our Portfolio
+        </h1>
         <p class="animate__animated animate__fadeIn animate__delay-1s">
           Explore our collection of premium properties
         </p>
@@ -28,16 +30,22 @@
           :key="property.id"
           class="portfolio-item"
         >
-          <div class="portfolio-image">{{ property.image }}</div>
+          <div class="portfolio-image">
+            {{ property.image }}
+          </div>
           <div class="portfolio-content">
             <h3>{{ property.name }}</h3>
-            <p class="location">{{ property.location }}</p>
+            <p class="location">
+              {{ property.location }}
+            </p>
             <div class="property-features">
               <span>{{ property.bedrooms }} Beds</span>
               <span>{{ property.bathrooms }} Baths</span>
               <span>{{ property.area }} sqft</span>
             </div>
-            <p class="description">{{ property.description }}</p>
+            <p class="description">
+              {{ property.description }}
+            </p>
             <NuxtLink :to="'/property/' + property.id" class="btn">
               View Details
             </NuxtLink>
@@ -185,4 +193,4 @@ const filteredProperties = computed(() => {
   margin-bottom: 1.5rem;
   color: #666;
 }
-</style> 
+</style>

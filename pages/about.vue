@@ -2,7 +2,9 @@
   <div class="about-page">
     <header class="page-header">
       <div class="container">
-        <h1 class="animate__animated animate__fadeIn">About Us</h1>
+        <h1 class="animate__animated animate__fadeIn">
+          About Us
+        </h1>
         <p class="animate__animated animate__fadeIn animate__delay-1s">
           Learn about our journey and commitment to excellence
         </p>
@@ -14,10 +16,10 @@
         <div class="about-content">
           <h2>Our Story</h2>
           <p>{{ aboutContent.story }}</p>
-          
+
           <h2>Our Mission</h2>
           <p>{{ aboutContent.mission }}</p>
-          
+
           <h2>Our Values</h2>
           <ul class="values-list">
             <li v-for="value in aboutContent.values" :key="value.id">
@@ -28,13 +30,21 @@
       </section>
 
       <section class="team-section">
-        <h2 class="section-title">Our Team</h2>
+        <h2 class="section-title">
+          Our Team
+        </h2>
         <div class="team-grid">
           <div v-for="member in team" :key="member.id" class="team-card">
-            <div class="team-member-image">{{ member.avatar }}</div>
+            <div class="team-member-image">
+              {{ member.avatar }}
+            </div>
             <h3>{{ member.name }}</h3>
-            <p class="team-member-position">{{ member.position }}</p>
-            <p class="team-member-bio">{{ member.bio }}</p>
+            <p class="team-member-position">
+              {{ member.position }}
+            </p>
+            <p class="team-member-bio">
+              {{ member.bio }}
+            </p>
           </div>
         </div>
       </section>
@@ -145,4 +155,4 @@ const team = ref([
   font-size: 0.9rem;
   color: #666;
 }
-</style> 
+</style>

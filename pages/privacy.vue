@@ -2,7 +2,9 @@
   <div class="privacy-page">
     <header class="page-header">
       <div class="container">
-        <h1 class="animate__animated animate__fadeIn">Privacy Policy</h1>
+        <h1 class="animate__animated animate__fadeIn">
+          Privacy Policy
+        </h1>
       </div>
     </header>
 
@@ -68,4 +70,4 @@ ul {
 li {
   margin-bottom: 0.5rem;
 }
-</style> 
+</style>

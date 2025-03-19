@@ -1,72 +1,74 @@
 <template>
   <div class="contact-page">
-    <h1 class="animate__animated animate__fadeIn">Contact Us</h1>
+    <h1 class="animate__animated animate__fadeIn">
+      Contact Us
+    </h1>
     <p class="animate__animated animate__fadeIn animate__delay-1s">
       Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
     </p>
     <div class="contact-container animate__animated animate__fadeIn animate__delay-2s">
       <div class="contact-info">
         <div class="info-item">
-          <i class="fas fa-map-marker-alt"></i>
+          <i class="fas fa-map-marker-alt" />
           <div>
             <h3>Location</h3>
             <p>123 Luxury Lane, Beverly Hills, CA 90210</p>
           </div>
         </div>
         <div class="info-item">
-          <i class="fas fa-phone"></i>
+          <i class="fas fa-phone" />
           <div>
             <h3>Phone</h3>
             <p>+1 (555) 123-4567</p>
           </div>
         </div>
         <div class="info-item">
-          <i class="fas fa-envelope"></i>
+          <i class="fas fa-envelope" />
           <div>
             <h3>Email</h3>
             <p>info@sickworldresidence.com</p>
           </div>
         </div>
         <div class="social-links">
-          <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook" /></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram" /></a>
+          <a href="#" aria-label="Twitter"><i class="fab fa-twitter" /></a>
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin" /></a>
         </div>
       </div>
-      <form @submit.prevent="handleSubmit" class="contact-form">
+      <form class="contact-form" @submit.prevent="handleSubmit">
         <div class="form-group">
           <label for="name">Name</label>
           <div class="input-group">
-            <i class="fas fa-user"></i>
-            <input type="text" id="name" v-model="form.name" required>
+            <i class="fas fa-user" />
+            <input id="name" v-model="form.name" type="text" required>
           </div>
         </div>
         <div class="form-group">
           <label for="email">Email</label>
           <div class="input-group">
-            <i class="fas fa-envelope"></i>
-            <input type="email" id="email" v-model="form.email" required>
+            <i class="fas fa-envelope" />
+            <input id="email" v-model="form.email" type="email" required>
           </div>
         </div>
         <div class="form-group">
           <label for="phone">Phone</label>
           <div class="input-group">
-            <i class="fas fa-phone"></i>
-            <input type="tel" id="phone" v-model="form.phone">
+            <i class="fas fa-phone" />
+            <input id="phone" v-model="form.phone" type="tel">
           </div>
         </div>
         <div class="form-group">
           <label for="message">Message</label>
           <div class="input-group">
-            <i class="fas fa-comment"></i>
-            <textarea id="message" v-model="form.message" rows="5" required></textarea>
+            <i class="fas fa-comment" />
+            <textarea id="message" v-model="form.message" rows="5" required />
           </div>
         </div>
         <button type="submit" :disabled="isSubmitting" class="submit-btn">
           <span v-if="!isSubmitting">Send Message</span>
           <span v-else class="loading">
-            <i class="fas fa-spinner fa-spin"></i>
+            <i class="fas fa-spinner fa-spin" />
             Sending...
           </span>
         </button>
@@ -284,4 +286,4 @@ input:focus, textarea:focus {
     padding-bottom: 2rem;
   }
 }
-</style> 
+</style>

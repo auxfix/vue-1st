@@ -2,7 +2,9 @@
   <div class="property-details">
     <header class="page-header">
       <div class="container">
-        <h1 class="animate__animated animate__fadeIn">{{ property?.name || 'Loading...' }}</h1>
+        <h1 class="animate__animated animate__fadeIn">
+          {{ property?.name || 'Loading...' }}
+        </h1>
         <p class="animate__animated animate__fadeIn animate__delay-1s">
           {{ property?.location || 'Loading location...' }}
         </p>
@@ -18,15 +20,21 @@
       </div>
       <div v-else-if="property" class="property-content">
         <div class="property-header">
-          <div class="property-image">{{ property.image }}</div>
+          <div class="property-image">
+            {{ property.image }}
+          </div>
           <div class="property-info">
             <div class="property-stats">
               <span>{{ property.bedrooms }} Beds</span>
               <span>{{ property.bathrooms }} Baths</span>
               <span>{{ property.area }} sqft</span>
             </div>
-            <p class="property-price">{{ property.price }}</p>
-            <p class="property-status">{{ property.status }}</p>
+            <p class="property-price">
+              {{ property.price }}
+            </p>
+            <p class="property-status">
+              {{ property.status }}
+            </p>
           </div>
         </div>
 
@@ -54,8 +62,12 @@
         </div>
 
         <div class="property-actions">
-          <button class="btn">Schedule Viewing</button>
-          <button class="btn btn-secondary">Download Brochure</button>
+          <button class="btn">
+            Schedule Viewing
+          </button>
+          <button class="btn btn-secondary">
+            Download Brochure
+          </button>
         </div>
       </div>
     </main>
@@ -203,4 +215,4 @@ useHead({
     grid-template-columns: 1fr;
   }
 }
-</style> 
+</style>

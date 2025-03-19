@@ -1,8 +1,12 @@
 <template>
   <div>
     <header class="hero">
-      <h1 class="animate__animated animate__fadeIn">{{ siteContent.hero.title }}</h1>
-      <p class="hero-subtitle animate__animated animate__fadeIn animate__delay-1s">{{ siteContent.hero.subtitle }}</p>
+      <h1 class="animate__animated animate__fadeIn">
+        {{ siteContent.hero.title }}
+      </h1>
+      <p class="hero-subtitle animate__animated animate__fadeIn animate__delay-1s">
+        {{ siteContent.hero.subtitle }}
+      </p>
       <NuxtLink
         to="#features"
         class="btn animate__animated animate__fadeIn animate__delay-2s"
@@ -14,7 +18,9 @@
 
     <main class="main-content">
       <section id="features" class="features-section container">
-        <h2 class="section-title">Our Features</h2>
+        <h2 class="section-title">
+          Our Features
+        </h2>
         <div v-if="isLoading" class="loading-state">
           Loading features...
         </div>
@@ -23,11 +29,13 @@
             v-for="feature in features.features"
             :key="feature.id"
             class="feature-card"
+            :class="{ 'feature-card-hovered': feature.isHovered }"
             @mouseenter="feature.isHovered = true"
             @mouseleave="feature.isHovered = false"
-            :class="{ 'feature-card-hovered': feature.isHovered }"
           >
-            <div class="feature-icon">{{ feature.icon }}</div>
+            <div class="feature-icon">
+              {{ feature.icon }}
+            </div>
             <h3>{{ feature.title }}</h3>
             <p>{{ feature.description }}</p>
           </div>
@@ -35,20 +43,22 @@
       </section>
 
       <section id="contact" class="contact-section container">
-        <h2 class="section-title">Get in Touch</h2>
+        <h2 class="section-title">
+          Get in Touch
+        </h2>
         <form class="contact-form" @submit.prevent="submitForm">
           <div class="form-group">
             <input
-              type="text"
               v-model="contactForm.name"
+              type="text"
               placeholder="Your Name"
               required
             >
           </div>
           <div class="form-group">
             <input
-              type="email"
               v-model="contactForm.email"
+              type="email"
               placeholder="Your Email"
               required
             >
@@ -58,7 +68,7 @@
               v-model="contactForm.message"
               placeholder="Your Message"
               required
-            ></textarea>
+            />
           </div>
           <button type="submit" class="btn" :disabled="isSubmitting">
             {{ isSubmitting ? 'Sending...' : 'Send Message' }}
@@ -149,4 +159,4 @@ useHead({
   color: var(--secondary-color);
   font-size: 1.2rem;
 }
-</style> 
+</style>
