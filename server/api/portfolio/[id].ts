@@ -1,6 +1,6 @@
 export default defineEventHandler((event) => {
   const id = getRouterParam(event, 'id')
-  
+
   // Validate that id is a valid portfolio item id
   if (!id || !['1', '2', '3', '4'].includes(id)) {
     throw createError({
@@ -126,7 +126,7 @@ export default defineEventHandler((event) => {
   }
 
   const item = portfolioItems[id as '1' | '2' | '3' | '4']
-  
+
   if (!item) {
     throw createError({
       statusCode: 404,
