@@ -3,20 +3,32 @@
     <header class="hero">
       <h1 class="animate__animated animate__fadeIn">{{ siteContent.hero.title }}</h1>
       <p class="hero-subtitle animate__animated animate__fadeIn animate__delay-1s">{{ siteContent.hero.subtitle }}</p>
-      <NuxtLink
-        to="#features"
-        class="btn animate__animated animate__fadeIn animate__delay-2s"
-        @click.prevent="scrollToSection('#features')"
-      >
-        Explore More
-      </NuxtLink>
+      <div class="hero-buttons">
+        <NuxtLink
+          to="#features"
+          class="btn primary-btn animate__animated animate__fadeIn animate__delay-2s"
+          @click.prevent="scrollToSection('#features')"
+        >
+          Explore More
+        </NuxtLink>
+        <NuxtLink
+          to="/contact"
+          class="btn secondary-btn animate__animated animate__fadeIn animate__delay-2s"
+        >
+          Contact Us
+        </NuxtLink>
+      </div>
     </header>
 
     <main class="main-content">
       <section id="features" class="features-section container">
-        <h2 class="section-title">Our Features</h2>
+        <div class="section-header">
+          <h2 class="section-title">Our Features</h2>
+          <div class="section-divider"></div>
+        </div>
         <div v-if="isLoading" class="loading-state">
-          Loading features...
+          <div class="loading-spinner"></div>
+          <p>Loading features...</p>
         </div>
         <div v-else class="features-grid">
           <div
@@ -30,37 +42,67 @@
             <div class="feature-icon">{{ feature.icon }}</div>
             <h3>{{ feature.title }}</h3>
             <p>{{ feature.description }}</p>
+            <div class="feature-more">Learn More →</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="testimonials-section container">
+        <div class="section-header">
+          <h2 class="section-title">What Our Clients Say</h2>
+          <div class="section-divider"></div>
+        </div>
+        <div class="testimonials-slider">
+          <div class="testimonial-card">
+            <div class="testimonial-quote">"</div>
+            <p class="testimonial-text">The team exceeded our expectations with their attention to detail and commitment to quality.</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">👨‍💼</div>
+              <div class="testimonial-info">
+                <h4>John Smith</h4>
+                <p>CEO, Smith Enterprises</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       <section id="contact" class="contact-section container">
-        <h2 class="section-title">Get in Touch</h2>
+        <div class="section-header">
+          <h2 class="section-title">Get in Touch</h2>
+          <div class="section-divider"></div>
+        </div>
         <form class="contact-form" @submit.prevent="submitForm">
           <div class="form-group">
+            <label for="name">Your Name</label>
             <input
+              id="name"
               type="text"
               v-model="contactForm.name"
-              placeholder="Your Name"
+              placeholder="Enter your name"
               required
             >
           </div>
           <div class="form-group">
+            <label for="email">Your Email</label>
             <input
+              id="email"
               type="email"
               v-model="contactForm.email"
-              placeholder="Your Email"
+              placeholder="Enter your email"
               required
             >
           </div>
           <div class="form-group">
+            <label for="message">Your Message</label>
             <textarea
+              id="message"
               v-model="contactForm.message"
-              placeholder="Your Message"
+              placeholder="What would you like to tell us?"
               required
             ></textarea>
           </div>
-          <button type="submit" class="btn" :disabled="isSubmitting">
+          <button type="submit" class="btn primary-btn" :disabled="isSubmitting">
             {{ isSubmitting ? 'Sending...' : 'Send Message' }}
           </button>
         </form>
@@ -114,6 +156,37 @@ useHead({
 </script>
 
 <style scoped>
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.primary-btn {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+}
+
+.secondary-btn {
+  background: transparent;
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-divider {
+  height: 4px;
+  width: 60px;
+  background: var(--primary-color);
+  margin: 1rem auto;
+  border-radius: 2px;
+}
+
 .features-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -121,10 +194,99 @@ useHead({
   margin-top: 3rem;
 }
 
+.feature-card {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-card-hovered {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
 .feature-icon {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
   color: var(--primary-color);
+}
+
+.feature-more {
+  margin-top: 1rem;
+  color: var(--primary-color);
+  font-weight: 600;
+  opacity: 0.7;
+  transition: opacity 0.3s;
+}
+
+.feature-card:hover .feature-more {
+  opacity: 1;
+}
+
+.testimonials-section {
+  margin: 6rem auto;
+  padding: 4rem 0;
+  background: var(--background-color);
+  border-radius: 12px;
+}
+
+.testimonial-card {
+  background: white;
+  border-radius: 12px;
+  padding: 3rem;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  position: relative;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.testimonial-quote {
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  font-size: 4rem;
+  color: var(--primary-color);
+  opacity: 0.2;
+  font-family: serif;
+}
+
+.testimonial-text {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  font-style: italic;
+  margin-bottom: 2rem;
+}
+
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.testimonial-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--background-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.testimonial-info h4 {
+  margin: 0;
+  color: var(--primary-color);
+}
+
+.testimonial-info p {
+  margin: 0;
+  font-size: 0.9rem;
+  opacity: 0.7;
 }
 
 .contact-section {
@@ -135,6 +297,34 @@ useHead({
 .contact-form {
   max-width: 600px;
   margin: 0 auto;
+  background: white;
+  padding: 3rem;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+label {
+  font-weight: 600;
+  color: #333;
+}
+
+input, textarea {
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  transition: border-color 0.3s;
+}
+
+input:focus, textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
 }
 
 .hero-subtitle {
@@ -148,5 +338,22 @@ useHead({
   padding: 2rem;
   color: var(--secondary-color);
   font-size: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(0,0,0,0.1);
+  border-radius: 50%;
+  border-top-color: var(--primary-color);
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
 </style> 
