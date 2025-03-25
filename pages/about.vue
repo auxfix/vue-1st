@@ -2,7 +2,9 @@
   <div class="about-page">
     <header class="page-header">
       <div class="container">
-        <h1 class="animate__animated animate__fadeIn">About Us</h1>
+        <h1 class="animate__animated animate__fadeIn">
+          About Us
+        </h1>
         <p class="animate__animated animate__fadeIn animate__delay-1s">
           Learn about our journey and commitment to excellence
         </p>
@@ -11,6 +13,7 @@
 
     <main class="container">
       <section class="about-section">
+<<<<<<< HEAD
         <div class="about-grid">
           <div class="about-image">
             <div class="image-placeholder">🏢</div>
@@ -92,18 +95,42 @@
               <p>Currently developing next-generation smart homes with cutting-edge technology.</p>
             </div>
           </div>
+=======
+        <div class="about-content">
+          <h2>Our Story</h2>
+          <p>{{ aboutContent.story }}</p>
+
+          <h2>Our Mission</h2>
+          <p>{{ aboutContent.mission }}</p>
+
+          <h2>Our Values</h2>
+          <ul class="values-list">
+            <li v-for="value in aboutContent.values" :key="value.id">
+              <strong>{{ value.title }}:</strong> {{ value.description }}
+            </li>
+          </ul>
+>>>>>>> d750d763ba0a893697d11845395bf11d1748dc7f
         </div>
       </section>
 
       <section class="team-section">
+<<<<<<< HEAD
         <div class="section-header text-center">
           <h2 class="section-title">Our Team</h2>
           <div class="section-divider center-divider"></div>
         </div>
+=======
+        <h2 class="section-title">
+          Our Team
+        </h2>
+>>>>>>> d750d763ba0a893697d11845395bf11d1748dc7f
         <div class="team-grid">
           <div v-for="member in team" :key="member.id" class="team-card">
-            <div class="team-member-image">{{ member.avatar }}</div>
+            <div class="team-member-image">
+              {{ member.avatar }}
+            </div>
             <h3>{{ member.name }}</h3>
+<<<<<<< HEAD
             <p class="team-member-position">{{ member.position }}</p>
             <p class="team-member-bio">{{ member.bio }}</p>
             <div class="team-social">
@@ -132,6 +159,14 @@
           <div class="stat-card">
             <div class="stat-number">3</div>
             <div class="stat-title">Cities Covered</div>
+=======
+            <p class="team-member-position">
+              {{ member.position }}
+            </p>
+            <p class="team-member-bio">
+              {{ member.bio }}
+            </p>
+>>>>>>> d750d763ba0a893697d11845395bf11d1748dc7f
           </div>
         </div>
       </section>
@@ -459,4 +494,4 @@ const team = ref([
     grid-template-columns: 1fr;
   }
 }
-</style> 
+</style>

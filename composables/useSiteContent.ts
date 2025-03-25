@@ -37,4 +37,4 @@ export const useSiteContent = () => {
     features: safeFeatures,
     isLoading
   }
-} 
+}

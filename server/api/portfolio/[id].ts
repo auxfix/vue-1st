@@ -1,9 +1,17 @@
 export default defineEventHandler((event) => {
   const id = getRouterParam(event, 'id')
-  
-  // In a real application, this would come from a database
+
+  // Validate that id is a valid portfolio item id
+  if (!id || !['1', '2', '3', '4'].includes(id)) {
+    throw createError({
+      statusCode: 404,
+      message: 'Portfolio item not found'
+    })
+  }
+
+  // Now TypeScript knows id is a valid key
   const portfolioItems = {
-    '1': {
+    1: {
       id: 1,
       name: 'Luxury Penthouse',
       location: 'Downtown District',
@@ -31,7 +39,7 @@ export default defineEventHandler((event) => {
       price: '$2,500,000',
       status: 'Available'
     },
-    '2': {
+    2: {
       id: 2,
       name: 'Garden Villa',
       location: 'Suburban Paradise',
@@ -59,7 +67,7 @@ export default defineEventHandler((event) => {
       price: '$3,800,000',
       status: 'Available'
     },
-    '3': {
+    3: {
       id: 3,
       name: 'Sky Apartment',
       location: 'City Center',
@@ -87,7 +95,7 @@ export default defineEventHandler((event) => {
       price: '$950,000',
       status: 'Available'
     },
-    '4': {
+    4: {
       id: 4,
       name: 'Waterfront Villa',
       location: 'Coastal Area',
@@ -117,14 +125,14 @@ export default defineEventHandler((event) => {
     }
   }
 
-  const item = portfolioItems[id as keyof typeof portfolioItems]
-  
+  const item = portfolioItems[id as '1' | '2' | '3' | '4']
+
   if (!item) {
     throw createError({
       statusCode: 404,
-      message: 'Property not found'
+      message: 'Portfolio item not found'
     })
   }
 
   return item
-}) 
+})

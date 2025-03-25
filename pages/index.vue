@@ -1,6 +1,7 @@
 <template>
   <div>
     <header class="hero">
+<<<<<<< HEAD
       <h1 class="animate__animated animate__fadeIn">{{ siteContent.hero.title }}</h1>
       <p class="hero-subtitle animate__animated animate__fadeIn animate__delay-1s">{{ siteContent.hero.subtitle }}</p>
       <div class="hero-buttons">
@@ -18,14 +19,35 @@
           Contact Us
         </NuxtLink>
       </div>
+=======
+      <h1 class="animate__animated animate__fadeIn">
+        {{ siteContent.hero.title }}
+      </h1>
+      <p class="hero-subtitle animate__animated animate__fadeIn animate__delay-1s">
+        {{ siteContent.hero.subtitle }}
+      </p>
+      <NuxtLink
+        to="#features"
+        class="btn animate__animated animate__fadeIn animate__delay-2s"
+        @click.prevent="scrollToSection('#features')"
+      >
+        Explore More
+      </NuxtLink>
+>>>>>>> d750d763ba0a893697d11845395bf11d1748dc7f
     </header>
 
     <main class="main-content">
       <section id="features" class="features-section container">
+<<<<<<< HEAD
         <div class="section-header">
           <h2 class="section-title">Our Features</h2>
           <div class="section-divider"></div>
         </div>
+=======
+        <h2 class="section-title">
+          Our Features
+        </h2>
+>>>>>>> d750d763ba0a893697d11845395bf11d1748dc7f
         <div v-if="isLoading" class="loading-state">
           <div class="loading-spinner"></div>
           <p>Loading features...</p>
@@ -35,11 +57,13 @@
             v-for="feature in features.features"
             :key="feature.id"
             class="feature-card"
+            :class="{ 'feature-card-hovered': feature.isHovered }"
             @mouseenter="feature.isHovered = true"
             @mouseleave="feature.isHovered = false"
-            :class="{ 'feature-card-hovered': feature.isHovered }"
           >
-            <div class="feature-icon">{{ feature.icon }}</div>
+            <div class="feature-icon">
+              {{ feature.icon }}
+            </div>
             <h3>{{ feature.title }}</h3>
             <p>{{ feature.description }}</p>
             <div class="feature-more">Learn More →</div>
@@ -68,28 +92,46 @@
       </section>
 
       <section id="contact" class="contact-section container">
+<<<<<<< HEAD
         <div class="section-header">
           <h2 class="section-title">Get in Touch</h2>
           <div class="section-divider"></div>
         </div>
+=======
+        <h2 class="section-title">
+          Get in Touch
+        </h2>
+>>>>>>> d750d763ba0a893697d11845395bf11d1748dc7f
         <form class="contact-form" @submit.prevent="submitForm">
           <div class="form-group">
             <label for="name">Your Name</label>
             <input
+<<<<<<< HEAD
               id="name"
               type="text"
               v-model="contactForm.name"
               placeholder="Enter your name"
+=======
+              v-model="contactForm.name"
+              type="text"
+              placeholder="Your Name"
+>>>>>>> d750d763ba0a893697d11845395bf11d1748dc7f
               required
             >
           </div>
           <div class="form-group">
             <label for="email">Your Email</label>
             <input
+<<<<<<< HEAD
               id="email"
               type="email"
               v-model="contactForm.email"
               placeholder="Enter your email"
+=======
+              v-model="contactForm.email"
+              type="email"
+              placeholder="Your Email"
+>>>>>>> d750d763ba0a893697d11845395bf11d1748dc7f
               required
             >
           </div>
@@ -100,7 +142,7 @@
               v-model="contactForm.message"
               placeholder="What would you like to tell us?"
               required
-            ></textarea>
+            />
           </div>
           <button type="submit" class="btn primary-btn" :disabled="isSubmitting">
             {{ isSubmitting ? 'Sending...' : 'Send Message' }}
@@ -356,4 +398,4 @@ input:focus, textarea:focus {
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
-</style> 
+</style>

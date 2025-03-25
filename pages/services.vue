@@ -2,7 +2,9 @@
   <div class="services-page">
     <header class="page-header">
       <div class="container">
-        <h1 class="animate__animated animate__fadeIn">Our Services</h1>
+        <h1 class="animate__animated animate__fadeIn">
+          Our Services
+        </h1>
         <p class="animate__animated animate__fadeIn animate__delay-1s">
           Discover our range of premium residential services
         </p>
@@ -12,7 +14,9 @@
     <main class="container">
       <section class="services-grid">
         <div v-for="service in services" :key="service.id" class="service-card">
-          <div class="service-icon">{{ service.icon }}</div>
+          <div class="service-icon">
+            {{ service.icon }}
+          </div>
           <h3>{{ service.title }}</h3>
           <p>{{ service.description }}</p>
           <ul class="service-features">
@@ -26,7 +30,9 @@
       <section class="cta-section">
         <h2>Ready to Experience Luxury Living?</h2>
         <p>Contact us today to learn more about our services</p>
-        <NuxtLink to="/contact" class="btn">Get in Touch</NuxtLink>
+        <NuxtLink to="/contact" class="btn">
+          Get in Touch
+        </NuxtLink>
       </section>
     </main>
   </div>
@@ -145,4 +151,4 @@ const services = ref([
 .cta-section p {
   margin-bottom: 2rem;
 }
-</style> 
+</style>

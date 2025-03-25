@@ -2,11 +2,13 @@
   <div class="property-page">
     <header class="page-header">
       <div class="container">
-        <h1 class="animate__animated animate__fadeIn">{{ property?.name || 'Property Details' }}</h1>
+        <h1 class="animate__animated animate__fadeIn">
+          {{ property?.name || 'Property Details' }}
+        </h1>
       </div>
     </header>
 
-    <main class="container" v-if="property">
+    <main v-if="property" class="container">
       <div class="property-content">
         <div class="property-image">
           {{ property.image }}
@@ -14,21 +16,21 @@
 
         <div class="property-details">
           <div class="location">
-            <i class="fas fa-map-marker-alt"></i>
+            <i class="fas fa-map-marker-alt" />
             {{ property.location }}
           </div>
 
           <div class="features">
             <div class="feature">
-              <i class="fas fa-bed"></i>
+              <i class="fas fa-bed" />
               <span>{{ property.bedrooms }} Bedrooms</span>
             </div>
             <div class="feature">
-              <i class="fas fa-bath"></i>
+              <i class="fas fa-bath" />
               <span>{{ property.bathrooms }} Bathrooms</span>
             </div>
             <div class="feature">
-              <i class="fas fa-ruler-combined"></i>
+              <i class="fas fa-ruler-combined" />
               <span>{{ property.area }} sqft</span>
             </div>
           </div>
@@ -175,4 +177,4 @@ const property = computed(() => {
     height: 300px;
   }
 }
-</style> 
+</style>
