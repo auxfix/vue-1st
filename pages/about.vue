@@ -16,7 +16,11 @@
         <div class="about-grid">
           <div class="about-image">
             <div class="image-placeholder">🏢</div>
-            <div class="experience-badge">5+ Years Experience</div>
+            <div class="experience-badge">
+              <div class="badge-number">5+</div>
+              <div class="badge-text">Years Experience</div>
+            </div>
+            <div class="image-overlay"></div>
           </div>
           <div class="about-content">
             <div class="section-header">
@@ -52,6 +56,7 @@
         <div class="section-header text-center">
           <h2 class="section-title">Our Journey</h2>
           <div class="section-divider center-divider"></div>
+          <p class="section-subtitle">A timeline of our growth and achievements</p>
         </div>
         <div class="timeline">
           <div class="timeline-item">
@@ -101,6 +106,7 @@
         <div class="section-header text-center">
           <h2 class="section-title">Our Team</h2>
           <div class="section-divider center-divider"></div>
+          <p class="section-subtitle">Meet the people behind our success</p>
         </div>
         <div class="team-grid">
           <div v-for="member in team" :key="member.id" class="team-card">
@@ -120,6 +126,11 @@
       </section>
 
       <section class="stats-section">
+        <div class="section-header text-center">
+          <h2 class="section-title">Our Impact</h2>
+          <div class="section-divider center-divider"></div>
+          <p class="section-subtitle">Numbers that speak for themselves</p>
+        </div>
         <div class="stats-grid">
           <div class="stat-card">
             <div class="stat-number">50+</div>
@@ -219,16 +230,49 @@ const team = ref([
   font-size: 5rem;
 }
 
+.image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(var(--primary-color-rgb), 0.1), rgba(var(--secondary-color-rgb), 0.1));
+  border-radius: 12px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.about-image:hover .image-overlay {
+  opacity: 1;
+}
+
 .experience-badge {
   position: absolute;
   bottom: -20px;
   right: -20px;
   background: var(--primary-color);
   color: white;
-  padding: 1rem 2rem;
-  border-radius: 8px;
-  font-weight: bold;
+  padding: 1.5rem;
+  border-radius: 12px;
   box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  text-align: center;
+  transform: rotate(3deg);
+  transition: transform 0.3s ease;
+}
+
+.experience-badge:hover {
+  transform: rotate(0deg) scale(1.05);
+}
+
+.badge-number {
+  font-size: 2.5rem;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.badge-text {
+  font-size: 0.9rem;
+  opacity: 0.9;
 }
 
 .section-header {
@@ -320,6 +364,22 @@ const team = ref([
   position: relative;
   padding-left: 60px;
   margin-bottom: 3rem;
+  opacity: 0;
+  transform: translateX(-20px);
+  animation: slideIn 0.5s ease forwards;
+}
+
+.timeline-item:nth-child(1) { animation-delay: 0.1s; }
+.timeline-item:nth-child(2) { animation-delay: 0.2s; }
+.timeline-item:nth-child(3) { animation-delay: 0.3s; }
+.timeline-item:nth-child(4) { animation-delay: 0.4s; }
+.timeline-item:nth-child(5) { animation-delay: 0.5s; }
+
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .timeline-dot {
@@ -363,11 +423,25 @@ const team = ref([
   background: white;
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-  transition: transform 0.3s;
+  position: relative;
+  overflow: hidden;
 }
 
-.team-card:hover {
-  transform: translateY(-10px);
+.team-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--primary-color);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.team-card:hover::before {
+  transform: scaleX(1);
 }
 
 .team-member-image {
@@ -381,6 +455,11 @@ const team = ref([
   align-items: center;
   justify-content: center;
   margin: 0 auto 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.team-card:hover .team-member-image {
+  transform: scale(1.1);
 }
 
 .team-member-position {
@@ -409,12 +488,31 @@ const team = ref([
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.3s;
+  position: relative;
+  overflow: hidden;
 }
 
-.social-icon:hover {
+.social-icon::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
   background: var(--primary-color);
-  color: white;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s ease, height 0.3s ease;
+}
+
+.social-icon:hover::after {
+  width: 100%;
+  height: 100%;
+}
+
+.social-icon span {
+  position: relative;
+  z-index: 1;
 }
 
 .stats-section {
@@ -433,6 +531,13 @@ const team = ref([
   background: white;
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-10px);
 }
 
 .stat-number {
@@ -440,11 +545,36 @@ const team = ref([
   font-weight: bold;
   color: var(--primary-color);
   margin-bottom: 0.5rem;
+  position: relative;
+}
+
+.stat-number::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--primary-color);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+.stat-card:hover .stat-number::after {
+  transform: scaleX(1);
+  transform-origin: left;
 }
 
 .stat-title {
   font-size: 1.1rem;
   color: #555;
+}
+
+.section-subtitle {
+  color: #666;
+  font-size: 1.1rem;
+  margin-top: 0.5rem;
 }
 
 @media (max-width: 992px) {
@@ -455,12 +585,28 @@ const team = ref([
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .experience-badge {
+    right: 20px;
+  }
 }
 
 @media (max-width: 576px) {
   .values-grid,
   .stats-grid {
     grid-template-columns: 1fr;
+  }
+
+  .experience-badge {
+    position: relative;
+    right: 0;
+    bottom: 0;
+    margin-top: 1rem;
+    transform: none;
+  }
+
+  .experience-badge:hover {
+    transform: none;
   }
 }
 </style>

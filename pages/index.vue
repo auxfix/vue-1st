@@ -25,6 +25,7 @@
         <div class="section-header">
           <h2 class="section-title">Our Features</h2>
           <div class="section-divider"></div>
+          <p class="section-subtitle">Discover what makes us unique</p>
         </div>
         <div v-if="isLoading" class="loading-state">
           <div class="loading-spinner"></div>
@@ -53,8 +54,9 @@
         <div class="section-header">
           <h2 class="section-title">What Our Clients Say</h2>
           <div class="section-divider"></div>
+          <p class="section-subtitle">Testimonials from our satisfied customers</p>
         </div>
-        <div class="testimonials-slider">
+        <div class="testimonials-grid">
           <div class="testimonial-card">
             <div class="testimonial-quote">"</div>
             <p class="testimonial-text">The team exceeded our expectations with their attention to detail and commitment to quality.</p>
@@ -63,6 +65,28 @@
               <div class="testimonial-info">
                 <h4>John Smith</h4>
                 <p>CEO, Smith Enterprises</p>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-quote">"</div>
+            <p class="testimonial-text">Exceptional service and outstanding results. They transformed our vision into reality.</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">👩‍💼</div>
+              <div class="testimonial-info">
+                <h4>Sarah Johnson</h4>
+                <p>Director, Design Co.</p>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-quote">"</div>
+            <p class="testimonial-text">Professional, innovative, and truly dedicated to customer satisfaction.</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">👨‍💼</div>
+              <div class="testimonial-info">
+                <h4>Michael Chen</h4>
+                <p>Founder, Tech Solutions</p>
               </div>
             </div>
           </div>
@@ -201,7 +225,7 @@ useHead({
   border-radius: 12px;
   padding: 2rem;
   box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
 }
@@ -215,6 +239,7 @@ useHead({
   font-size: 3rem;
   margin-bottom: 1.5rem;
   color: var(--primary-color);
+  animation: float 3s ease-in-out infinite;
 }
 
 .feature-more {
@@ -239,11 +264,14 @@ useHead({
 .testimonial-card {
   background: white;
   border-radius: 12px;
-  padding: 3rem;
+  padding: 2rem;
   box-shadow: 0 5px 15px rgba(0,0,0,0.05);
   position: relative;
-  max-width: 600px;
-  margin: 0 auto;
+  transition: transform 0.3s;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-5px);
 }
 
 .testimonial-quote {
@@ -357,5 +385,84 @@ input:focus, textarea:focus {
 
 @keyframes spin {
   to { transform: rotate(360deg); }
+}
+
+.section-subtitle {
+  color: #666;
+  font-size: 1.1rem;
+  margin-top: 0.5rem;
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.btn {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.btn::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255,255,255,0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+}
+
+.btn:hover::after {
+  width: 300px;
+  height: 300px;
+}
+
+.primary-btn {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.8rem 2rem;
+  border-radius: 25px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.secondary-btn {
+  background: transparent;
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+  padding: 0.8rem 2rem;
+  border-radius: 25px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(var(--primary-color-rgb), 0.1), rgba(var(--secondary-color-rgb), 0.1));
+  z-index: -1;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
 }
 </style>
