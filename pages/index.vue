@@ -46,6 +46,12 @@
             <h3>{{ feature.title }}</h3>
             <p>{{ feature.description }}</p>
             <div class="feature-more">Learn More →</div>
+            <div class="feature-progress">
+              <div class="progress-bar">
+                <div class="progress-fill" :style="{ width: feature.progress + '%' }"></div>
+              </div>
+              <div class="progress-label">{{ feature.progress }}% Complete</div>
+            </div>
           </div>
         </div>
       </section>
@@ -97,40 +103,67 @@
         <div class="section-header">
           <h2 class="section-title">Get in Touch</h2>
           <div class="section-divider"></div>
+          <p class="section-subtitle">We'd love to hear from you</p>
         </div>
         <form class="contact-form" @submit.prevent="submitForm">
           <div class="form-group">
             <label for="name">Your Name</label>
-            <input
-              id="name"
-              type="text"
-              v-model="contactForm.name"
-              placeholder="Enter your name"
-              required
-            >
+            <div class="input-wrapper">
+              <span class="input-icon">👤</span>
+              <input
+                id="name"
+                type="text"
+                v-model="contactForm.name"
+                placeholder="Enter your name"
+                required
+                @focus="inputFocused = 'name'"
+                @blur="inputFocused = null"
+                :class="{ 'input-focused': inputFocused === 'name' }"
+              >
+            </div>
           </div>
           <div class="form-group">
             <label for="email">Your Email</label>
-            <input
-              id="email"
-              type="email"
-              v-model="contactForm.email"
-              placeholder="Enter your email"
-              required
-            >
+            <div class="input-wrapper">
+              <span class="input-icon">📧</span>
+              <input
+                id="email"
+                type="email"
+                v-model="contactForm.email"
+                placeholder="Enter your email"
+                required
+                @focus="inputFocused = 'email'"
+                @blur="inputFocused = null"
+                :class="{ 'input-focused': inputFocused === 'email' }"
+              >
+            </div>
           </div>
           <div class="form-group">
             <label for="message">Your Message</label>
-            <textarea
-              id="message"
-              v-model="contactForm.message"
-              placeholder="What would you like to tell us?"
-              required
-            />
+            <div class="input-wrapper">
+              <span class="input-icon">💬</span>
+              <textarea
+                id="message"
+                v-model="contactForm.message"
+                placeholder="What would you like to tell us?"
+                required
+                @focus="inputFocused = 'message'"
+                @blur="inputFocused = null"
+                :class="{ 'input-focused': inputFocused === 'message' }"
+              />
+            </div>
           </div>
-          <button type="submit" class="btn primary-btn" :disabled="isSubmitting">
-            {{ isSubmitting ? 'Sending...' : 'Send Message' }}
-          </button>
+          <div class="form-submit">
+            <button type="submit" class="btn primary-btn" :disabled="isSubmitting">
+              <span class="btn-icon">{{ isSubmitting ? '⏳' : '📤' }}</span>
+              <span class="btn-text">{{ isSubmitting ? 'Sending...' : 'Send Message' }}</span>
+              <div class="btn-progress" v-if="isSubmitting">
+                <div class="progress-bar">
+                  <div class="progress-fill"></div>
+                </div>
+              </div>
+            </button>
+          </div>
         </form>
       </section>
     </main>
@@ -140,6 +173,13 @@
 <script setup lang="ts">
 const { siteContent, features, isLoading } = useSiteContent()
 
+// Add progress values to features
+if (features.value && features.value.features) {
+  features.value.features.forEach(feature => {
+    feature.progress = Math.floor(Math.random() * 40) + 60 // Random progress between 60-100%
+  })
+}
+
 const contactForm = ref({
   name: '',
   email: '',
@@ -147,6 +187,7 @@ const contactForm = ref({
 })
 
 const isSubmitting = ref(false)
+const inputFocused = ref(null)
 
 const scrollToSection = (href: string) => {
   const element = document.querySelector(href)
@@ -345,16 +386,74 @@ label {
   color: #333;
 }
 
-input, textarea {
-  padding: 0.8rem;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  transition: border-color 0.3s;
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
 }
 
-input:focus, textarea:focus {
-  outline: none;
+.input-icon {
+  position: absolute;
+  left: 12px;
+  font-size: 1.2rem;
+  color: #999;
+  transition: color 0.3s ease;
+}
+
+.input-focused + .input-icon {
+  color: var(--primary-color);
+}
+
+input, textarea {
+  padding: 0.8rem 0.8rem 0.8rem 2.5rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.input-focused {
   border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.1);
+}
+
+.form-submit {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-icon {
+  font-size: 1.2rem;
+}
+
+.btn-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: rgba(255,255,255,0.2);
+  overflow: hidden;
+}
+
+.btn-progress .progress-fill {
+  height: 100%;
+  background: white;
+  animation: progress-animation 2s ease-in-out infinite;
+}
+
+@keyframes progress-animation {
+  0% { width: 0%; }
+  50% { width: 100%; }
+  100% { width: 0%; }
 }
 
 .hero-subtitle {
@@ -464,5 +563,49 @@ input:focus, textarea:focus {
   0% { transform: translateY(0px); }
   50% { transform: translateY(-10px); }
   100% { transform: translateY(0px); }
+}
+
+.feature-progress {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px dashed #eee;
+}
+
+.progress-bar {
+  height: 6px;
+  background: #eee;
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--primary-color);
+  border-radius: 3px;
+  transition: width 1s ease;
+}
+
+.progress-label {
+  font-size: 0.8rem;
+  color: #777;
+  text-align: right;
+}
+
+.feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--primary-color);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.feature-card:hover::before {
+  transform: scaleX(1);
 }
 </style>

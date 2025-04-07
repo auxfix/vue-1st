@@ -21,6 +21,16 @@
               <div class="badge-text">Years Experience</div>
             </div>
             <div class="image-overlay"></div>
+            <div class="image-progress">
+              <div class="progress-circle">
+                <svg viewBox="0 0 36 36" class="circular-chart">
+                  <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                  <path class="circle" stroke-dasharray="85, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                </svg>
+                <div class="progress-value">85%</div>
+              </div>
+              <div class="progress-label">Project Completion</div>
+            </div>
           </div>
           <div class="about-content">
             <div class="section-header">
@@ -59,44 +69,18 @@
           <p class="section-subtitle">A timeline of our growth and achievements</p>
         </div>
         <div class="timeline">
-          <div class="timeline-item">
+          <div class="timeline-item" v-for="(item, index) in timelineItems" :key="index">
             <div class="timeline-dot"></div>
             <div class="timeline-content">
-              <div class="timeline-date">2020</div>
-              <h3>Company Founded</h3>
-              <p>Sick World Residence was established with a vision to transform luxury living.</p>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content">
-              <div class="timeline-date">2021</div>
-              <h3>First Project Completed</h3>
-              <p>Successfully delivered our first residential complex with 100% occupancy.</p>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content">
-              <div class="timeline-date">2022</div>
-              <h3>Expansion to New Markets</h3>
-              <p>Extended our operations to three new cities with innovative concepts.</p>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content">
-              <div class="timeline-date">2023</div>
-              <h3>Sustainability Initiative</h3>
-              <p>Launched our green building program, incorporating eco-friendly practices.</p>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content">
-              <div class="timeline-date">Present</div>
-              <h3>Continuing Innovation</h3>
-              <p>Currently developing next-generation smart homes with cutting-edge technology.</p>
+              <div class="timeline-date">{{ item.date }}</div>
+              <h3>{{ item.title }}</h3>
+              <p>{{ item.description }}</p>
+              <div class="timeline-progress">
+                <div class="progress-bar">
+                  <div class="progress-fill" :style="{ width: item.progress + '%' }"></div>
+                </div>
+                <div class="progress-label">{{ item.progress }}% Complete</div>
+              </div>
             </div>
           </div>
         </div>
@@ -165,6 +149,39 @@ const aboutContent = ref({
     { id: 4, title: 'Community', description: 'We build more than just homes; we create thriving communities.' }
   ]
 })
+
+const timelineItems = ref([
+  {
+    date: '2020',
+    title: 'Company Founded',
+    description: 'Sick World Residence was established with a vision to transform luxury living.',
+    progress: 100
+  },
+  {
+    date: '2021',
+    title: 'First Project Completed',
+    description: 'Successfully delivered our first residential complex with 100% occupancy.',
+    progress: 100
+  },
+  {
+    date: '2022',
+    title: 'Expansion to New Markets',
+    description: 'Extended our operations to three new cities with innovative concepts.',
+    progress: 100
+  },
+  {
+    date: '2023',
+    title: 'Sustainability Initiative',
+    description: 'Launched our green building program, incorporating eco-friendly practices.',
+    progress: 85
+  },
+  {
+    date: 'Present',
+    title: 'Continuing Innovation',
+    description: 'Currently developing next-generation smart homes with cutting-edge technology.',
+    progress: 65
+  }
+])
 
 const team = ref([
   {
@@ -425,6 +442,7 @@ const team = ref([
   box-shadow: 0 4px 10px rgba(0,0,0,0.05);
   position: relative;
   overflow: hidden;
+  transition: transform 0.3s ease;
 }
 
 .team-card::before {
@@ -575,6 +593,132 @@ const team = ref([
   color: #666;
   font-size: 1.1rem;
   margin-top: 0.5rem;
+}
+
+.image-progress {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background: white;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  text-align: center;
+  transform: translateY(20px);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.about-image:hover .image-progress {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.progress-circle {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 0.5rem;
+}
+
+.circular-chart {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.circle-bg {
+  fill: none;
+  stroke: #eee;
+  stroke-width: 3;
+}
+
+.circle {
+  fill: none;
+  stroke: var(--primary-color);
+  stroke-width: 3;
+  stroke-linecap: round;
+  animation: progress 1s ease-out forwards;
+}
+
+.progress-value {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.progress-label {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+@keyframes progress {
+  0% {
+    stroke-dasharray: 0 100;
+  }
+}
+
+.timeline-progress {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px dashed #eee;
+}
+
+.timeline-progress .progress-bar {
+  height: 4px;
+  background: #eee;
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 0.3rem;
+}
+
+.timeline-progress .progress-fill {
+  height: 100%;
+  background: var(--primary-color);
+  border-radius: 2px;
+  transition: width 1s ease;
+}
+
+.timeline-progress .progress-label {
+  font-size: 0.7rem;
+  color: #777;
+  text-align: right;
+}
+
+.team-card {
+  text-align: center;
+  padding: 2rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.team-card:hover {
+  transform: translateY(-10px);
+}
+
+.team-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--primary-color);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.team-card:hover::after {
+  transform: scaleX(1);
 }
 
 @media (max-width: 992px) {
